@@ -10,7 +10,9 @@ import {
   Instagram, 
   Youtube, 
   Check,
-  Rocket
+  Rocket,
+  Eye,
+  EyeOff
 } from "lucide-react";
 
 interface UserInfo {
@@ -297,6 +299,20 @@ const AccountSetupStep = ({
     youtubePassword?: string;
     youtubeConfirmPassword?: string;
   }>({});
+  
+  const [passwordVisibility, setPasswordVisibility] = useState({
+    instagramPassword: false,
+    instagramConfirmPassword: false,
+    youtubePassword: false,
+    youtubeConfirmPassword: false,
+  });
+  
+  const togglePasswordVisibility = (field: keyof typeof passwordVisibility) => {
+    setPasswordVisibility(prev => ({
+      ...prev,
+      [field]: !prev[field]
+    }));
+  };
 
   const validateForm = () => {
     const newErrors: typeof errors = {};
@@ -383,7 +399,7 @@ const AccountSetupStep = ({
             <Label htmlFor="instagramPassword" className="text-sm font-medium">Password</Label>
             <div className="relative">
               <Input 
-                type="password" 
+                type={passwordVisibility.instagramPassword ? "text" : "password"} 
                 id="instagramPassword"
                 value={accounts.instagram.password}
                 onChange={(e) => setAccounts({
@@ -391,9 +407,17 @@ const AccountSetupStep = ({
                   instagram: { ...accounts.instagram, password: e.target.value }
                 })}
                 placeholder="Enter your password"
-                className="w-full px-3 sm:px-4 py-3 text-sm sm:text-base bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all pr-10"
+                className="w-full px-3 sm:px-4 py-3 text-sm sm:text-base bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all pr-16"
                 data-testid="input-instagram-password"
               />
+              <button
+                type="button"
+                onClick={() => togglePasswordVisibility('instagramPassword')}
+                className="absolute right-8 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                data-testid="toggle-instagram-password-visibility"
+              >
+                {passwordVisibility.instagramPassword ? <EyeOff size={14} /> : <Eye size={14} />}
+              </button>
               <Lock className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={14} />
             </div>
             {errors.instagramPassword && <p className="text-destructive text-xs sm:text-sm">{errors.instagramPassword}</p>}
@@ -403,7 +427,7 @@ const AccountSetupStep = ({
             <Label htmlFor="instagramConfirmPassword" className="text-sm font-medium">Confirm Password</Label>
             <div className="relative">
               <Input 
-                type="password" 
+                type={passwordVisibility.instagramConfirmPassword ? "text" : "password"} 
                 id="instagramConfirmPassword"
                 value={accounts.instagram.confirmPassword}
                 onChange={(e) => setAccounts({
@@ -411,9 +435,17 @@ const AccountSetupStep = ({
                   instagram: { ...accounts.instagram, confirmPassword: e.target.value }
                 })}
                 placeholder="Confirm your password"
-                className="w-full px-3 sm:px-4 py-3 text-sm sm:text-base bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all pr-10"
+                className="w-full px-3 sm:px-4 py-3 text-sm sm:text-base bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all pr-16"
                 data-testid="input-instagram-confirm-password"
               />
+              <button
+                type="button"
+                onClick={() => togglePasswordVisibility('instagramConfirmPassword')}
+                className="absolute right-8 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                data-testid="toggle-instagram-confirm-password-visibility"
+              >
+                {passwordVisibility.instagramConfirmPassword ? <EyeOff size={14} /> : <Eye size={14} />}
+              </button>
               <Lock className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={14} />
             </div>
             {errors.instagramConfirmPassword && <p className="text-destructive text-xs sm:text-sm">{errors.instagramConfirmPassword}</p>}
@@ -453,7 +485,7 @@ const AccountSetupStep = ({
             <Label htmlFor="youtubePassword" className="text-sm font-medium">Password</Label>
             <div className="relative">
               <Input 
-                type="password" 
+                type={passwordVisibility.youtubePassword ? "text" : "password"} 
                 id="youtubePassword"
                 value={accounts.youtube.password}
                 onChange={(e) => setAccounts({
@@ -461,9 +493,17 @@ const AccountSetupStep = ({
                   youtube: { ...accounts.youtube, password: e.target.value }
                 })}
                 placeholder="Enter your password"
-                className="w-full px-3 sm:px-4 py-3 text-sm sm:text-base bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all pr-10"
+                className="w-full px-3 sm:px-4 py-3 text-sm sm:text-base bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all pr-16"
                 data-testid="input-youtube-password"
               />
+              <button
+                type="button"
+                onClick={() => togglePasswordVisibility('youtubePassword')}
+                className="absolute right-8 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                data-testid="toggle-youtube-password-visibility"
+              >
+                {passwordVisibility.youtubePassword ? <EyeOff size={14} /> : <Eye size={14} />}
+              </button>
               <Lock className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={14} />
             </div>
             {errors.youtubePassword && <p className="text-destructive text-xs sm:text-sm">{errors.youtubePassword}</p>}
@@ -473,7 +513,7 @@ const AccountSetupStep = ({
             <Label htmlFor="youtubeConfirmPassword" className="text-sm font-medium">Confirm Password</Label>
             <div className="relative">
               <Input 
-                type="password" 
+                type={passwordVisibility.youtubeConfirmPassword ? "text" : "password"} 
                 id="youtubeConfirmPassword"
                 value={accounts.youtube.confirmPassword}
                 onChange={(e) => setAccounts({
@@ -481,9 +521,17 @@ const AccountSetupStep = ({
                   youtube: { ...accounts.youtube, confirmPassword: e.target.value }
                 })}
                 placeholder="Confirm your password"
-                className="w-full px-3 sm:px-4 py-3 text-sm sm:text-base bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all pr-10"
+                className="w-full px-3 sm:px-4 py-3 text-sm sm:text-base bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all pr-16"
                 data-testid="input-youtube-confirm-password"
               />
+              <button
+                type="button"
+                onClick={() => togglePasswordVisibility('youtubeConfirmPassword')}
+                className="absolute right-8 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                data-testid="toggle-youtube-confirm-password-visibility"
+              >
+                {passwordVisibility.youtubeConfirmPassword ? <EyeOff size={14} /> : <Eye size={14} />}
+              </button>
               <Lock className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={14} />
             </div>
             {errors.youtubeConfirmPassword && <p className="text-destructive text-xs sm:text-sm">{errors.youtubeConfirmPassword}</p>}
