@@ -34,15 +34,14 @@ interface Accounts {
   };
 }
 
-type Niche = 'motivation' | 'love' | 'business' | 'asmr' | 'tech' | 'other';
+type Niche = 'motivation' | 'love' | 'business' | 'asmr' | 'tech';
 
 const niches = [
   { id: 'motivation', name: 'Motivation', description: 'Inspirational content', emoji: '💪' },
   { id: 'love', name: 'Love/Shayari', description: 'Romantic content', emoji: '❤️' },
   { id: 'business', name: 'Business/Quotes', description: 'Professional content', emoji: '💼' },
   { id: 'asmr', name: 'ASMR/Relaxation', description: 'Calming content', emoji: '🧘' },
-  { id: 'tech', name: 'Evolving AI / Tech', description: 'Technology content', emoji: '🤖' },
-  { id: 'other', name: 'Other', description: 'Custom niche', emoji: '✨' }
+  { id: 'tech', name: 'Evolving AI / Tech', description: 'Technology content', emoji: '🤖' }
 ];
 
 const ProgressIndicator = ({ currentStep, totalSteps }: { currentStep: number; totalSteps: number }) => {
@@ -311,22 +310,19 @@ const CredentialsInfoStep = ({ onNext }: { onNext: () => void }) => {
             <p className="font-medium text-foreground">Username ideas by niche</p>
             <ul className="list-disc pl-5 space-y-1">
               <li>
-                <span className="font-medium">Motivation</span>: <span className="font-mono">motivation.daily</span>, <span className="font-mono">boost.with.ali</span>
+                <span className="font-medium">Motivation</span>: <span className="font-mono">motivation.daily</span>
               </li>
               <li>
-                <span className="font-medium">Love/Shayari</span>: <span className="font-mono">shayari.love</span>, <span className="font-mono">heartfelt.words</span>
+                <span className="font-medium">Love/Shayari</span>: <span className="font-mono">shayari.love</span>
               </li>
               <li>
-                <span className="font-medium">Business/Quotes</span>: <span className="font-mono">biz.quotes.hub</span>, <span className="font-mono">startup.tips.daily</span>
+                <span className="font-medium">Business/Quotes</span>: <span className="font-mono">biz.quotes.hub</span>
               </li>
               <li>
-                <span className="font-medium">ASMR/Relaxation</span>: <span className="font-mono">calm.asmr.hub</span>, <span className="font-mono">sleep.sounds.studio</span>
+                <span className="font-medium">ASMR/Relaxation</span>: <span className="font-mono">calm.asmr.hub</span>
               </li>
               <li>
-                <span className="font-medium">Evolving AI / Tech</span>: <span className="font-mono">ai.tech.updates</span>, <span className="font-mono">code.tech.digest</span>
-              </li>
-              <li>
-                <span className="font-medium">Other</span>: combine a main keyword + your name, e.g. <span className="font-mono">travel.with.ana</span>
+                <span className="font-medium">Evolving AI / Tech</span>: <span className="font-mono">ai.tech.updates</span>
               </li>
             </ul>
             <p className="text-xs sm:text-sm">Tip: keep it short, readable, and consistent across Instagram & YouTube.</p>
