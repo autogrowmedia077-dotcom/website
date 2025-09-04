@@ -551,7 +551,7 @@ const AccountSetupStep = ({
   );
 };
 
-const SuccessStep = ({ onFinish }: { onFinish: () => void }) => {
+const SuccessStep = () => {
   return (
     <div className="step-transition text-center space-y-6">
       <div className="space-y-4">
@@ -583,14 +583,11 @@ const SuccessStep = ({ onFinish }: { onFinish: () => void }) => {
         </div>
       </Card>
       
-      <Button 
-        onClick={onFinish}
-        className="w-full bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-primary-foreground font-semibold py-3 sm:py-4 px-6 rounded-xl transition-all duration-300 text-sm sm:text-base"
-        data-testid="button-finish"
-      >
-        <Check className="mr-2" size={16} />
-        Finish
-      </Button>
+      <div className="space-y-3">
+        <p className="text-sm text-muted-foreground px-4">
+          You can close this page now. For support, you can contact us.
+        </p>
+      </div>
     </div>
   );
 };
@@ -614,15 +611,6 @@ export default function OnboardingPage() {
     }
   };
 
-  const handleFinish = () => {
-    // In a real app, this would redirect to the dashboard
-    console.log('Onboarding completed!', {
-      userInfo,
-      selectedNiche,
-      accounts
-    });
-    alert('Onboarding completed! Redirecting to dashboard...');
-  };
 
   const renderStep = () => {
     switch (currentStep) {
@@ -653,7 +641,7 @@ export default function OnboardingPage() {
           />
         );
       case 5:
-        return <SuccessStep onFinish={handleFinish} />;
+        return <SuccessStep />;
       default:
         return <WelcomeStep onNext={nextStep} />;
     }
