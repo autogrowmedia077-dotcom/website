@@ -287,7 +287,7 @@ const CredentialsInfoStep = ({ onNext }: { onNext: () => void }) => {
       <div className="text-center space-y-2">
         <h2 className="text-xl sm:text-2xl font-bold">Choose usernames and learn about security</h2>
         <p className="text-muted-foreground text-sm sm:text-base px-2">
-          Please select Instagram and YouTube usernames that closely match your chosen niche for best discovery and branding.
+          To maximize discovery and build a strong brand, select Instgaram and Youtube usernames that closely align with your chosen niche.
         </p>
       </div>
 
@@ -296,13 +296,13 @@ const CredentialsInfoStep = ({ onNext }: { onNext: () => void }) => {
           <div className="flex items-start space-x-3">
             <Shield className="text-accent flex-shrink-0 mt-0.5" size={18} />
             <p>
-              Passwords are handled securely by <span className="font-semibold">PinnaclePlus</span> and stored on our servers using AES‑256 encryption.
+              All Passwords are handled securely by <span className="font-semibold">PinnaclePlus</span> and stored on our servers using AES‑256 encryption,ensuring maximimum protection.
             </p>
           </div>
           <div className="flex items-start space-x-3">
             <Rocket className="text-accent flex-shrink-0 mt-0.5" size={18} />
             <p>
-              Continue to enter your Instagram and YouTube credentials on the next step.
+              You'll be prompted to enter your Instagram and YouTube credentials on the next step.
             </p>
           </div>
 
@@ -325,7 +325,7 @@ const CredentialsInfoStep = ({ onNext }: { onNext: () => void }) => {
                 <span className="font-medium">Evolving AI / Tech</span>: <span className="font-mono">ai.tech.updates</span>
               </li>
             </ul>
-            <p className="text-xs sm:text-sm">Tip: keep it short, readable, and consistent across Instagram & YouTube.</p>
+            <p className="text-xs sm:text-sm">Tip: keep usernames short, clear, and consistent across Instagram & YouTube for best results.</p>
           </div>
         </div>
       </Card>
