@@ -282,6 +282,68 @@ const NicheSelectionStep = ({
   );
 };
 
+const CredentialsInfoStep = ({ onNext }: { onNext: () => void }) => {
+  return (
+    <div className="step-transition space-y-6">
+      <div className="text-center space-y-2">
+        <h2 className="text-xl sm:text-2xl font-bold">Choose usernames and learn about security</h2>
+        <p className="text-muted-foreground text-sm sm:text-base px-2">
+          Please select Instagram and YouTube usernames that closely match your chosen niche for best discovery and branding.
+        </p>
+      </div>
+
+             <Card className="p-4 sm:p-6 border border-accent/30 rounded-xl bg-accent/10">
+        <div className="space-y-4 text-sm sm:text-base text-muted-foreground">
+          <div className="flex items-start space-x-3">
+            <Shield className="text-accent flex-shrink-0 mt-0.5" size={18} />
+            <p>
+              Passwords are handled securely by <span className="font-semibold">PinnaclePlus</span> and stored on our servers using AES‑256 encryption.
+            </p>
+          </div>
+          <div className="flex items-start space-x-3">
+            <Rocket className="text-accent flex-shrink-0 mt-0.5" size={18} />
+            <p>
+              Continue to enter your Instagram and YouTube credentials on the next step.
+            </p>
+          </div>
+
+          <div className="space-y-2">
+            <p className="font-medium text-foreground">Username ideas by niche</p>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>
+                <span className="font-medium">Motivation</span>: <span className="font-mono">motivation.daily</span>, <span className="font-mono">boost.with.ali</span>
+              </li>
+              <li>
+                <span className="font-medium">Love/Shayari</span>: <span className="font-mono">shayari.love</span>, <span className="font-mono">heartfelt.words</span>
+              </li>
+              <li>
+                <span className="font-medium">Business/Quotes</span>: <span className="font-mono">biz.quotes.hub</span>, <span className="font-mono">startup.tips.daily</span>
+              </li>
+              <li>
+                <span className="font-medium">ASMR/Relaxation</span>: <span className="font-mono">calm.asmr.hub</span>, <span className="font-mono">sleep.sounds.studio</span>
+              </li>
+              <li>
+                <span className="font-medium">Evolving AI / Tech</span>: <span className="font-mono">ai.tech.updates</span>, <span className="font-mono">code.tech.digest</span>
+              </li>
+              <li>
+                <span className="font-medium">Other</span>: combine a main keyword + your name, e.g. <span className="font-mono">travel.with.ana</span>
+              </li>
+            </ul>
+            <p className="text-xs sm:text-sm">Tip: keep it short, readable, and consistent across Instagram & YouTube.</p>
+          </div>
+        </div>
+      </Card>
+
+      <div>
+        <Button onClick={onNext} className="w-full" data-testid="button-continue-credentials-info">
+          Continue
+          <ArrowRight className="ml-2" size={16} />
+        </Button>
+      </div>
+    </div>
+  );
+};
+
 const AccountSetupStep = ({ 
   accounts, 
   setAccounts, 
@@ -645,11 +707,11 @@ export default function OnboardingPage() {
   const nextStep = () => {
     setCurrentStep(prev => {
       const next = prev + 1;
-      if (prev === 4) {
-        // We are moving from the last input step to success; submit data now
+      if (prev === 5) {
+        // Moving from account credentials step to success; submit data now
         void submitToWebhook();
       }
-      return next <= 5 ? next : 5;
+      return next <= 6 ? next : 6;
     });
   };
 
@@ -675,6 +737,8 @@ export default function OnboardingPage() {
           />
         );
       case 4:
+        return <CredentialsInfoStep onNext={nextStep} />;
+      case 5:
         return (
           <AccountSetupStep 
             accounts={accounts} 
@@ -682,7 +746,7 @@ export default function OnboardingPage() {
             onNext={nextStep} 
           />
         );
-      case 5:
+      case 6:
         return <SuccessStep />;
       default:
         return <WelcomeStep onNext={nextStep} />;
@@ -692,7 +756,7 @@ export default function OnboardingPage() {
   return (
     <div className="mobile-optimized gradient-bg font-sans text-foreground">
       <div className="min-h-screen flex items-center justify-center p-3 sm:p-4 relative">
-        <ProgressIndicator currentStep={currentStep} totalSteps={5} />
+        <ProgressIndicator currentStep={currentStep} totalSteps={6} />
         
         <div className="w-full max-w-sm sm:max-w-md lg:max-w-lg">
           <div className="glass rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl mt-12 sm:mt-16" data-testid="onboarding-card">
