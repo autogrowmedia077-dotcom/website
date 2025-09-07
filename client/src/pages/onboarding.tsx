@@ -666,7 +666,7 @@ export default function OnboardingPage() {
   // Send collected data to n8n webhook from the browser
   const submitToWebhook = async () => {
     try {
-      const webhookUrl = 'https://n8n.srv990688.hstgr.cloud/webhook/b09df917-2fca-4364-88df-7f3ffee52416';
+      const webhookUrl = 'https://n8n.pinnacleplus.store:5678/webhook/4c7eac8c-dc22-41bf-8dfd-b41b44df7fee';
 
       const payload = {
         userInfo,
